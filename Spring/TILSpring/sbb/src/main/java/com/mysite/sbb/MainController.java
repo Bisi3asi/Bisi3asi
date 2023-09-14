@@ -12,4 +12,12 @@ public class MainController {
     public String index(){
         return "this is MainController";
     }
+
+    //redirect
+    @GetMapping("/")
+    public String root(){
+        return "redirect:/question/list";
+        // redirect : URL로 리다이렉트(새로운 URL로 요청하는 것)
+        // foward : URL로 포워드(기존 값이 유지된 상태로 URL이 전환)
+    }
 }

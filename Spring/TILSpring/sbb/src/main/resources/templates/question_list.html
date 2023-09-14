@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question : ${questionList}">
+        <!-- 타임리프는 Model 객체에 저장된 값을 읽을 수 있어 
+            questionList 사용이 가능함.-->
+        <!--th:each로 tr 내 question은 questionList를 for each loop-->
+        <td th:text="${question.subject}"></td>
+        <td th:text="${question.createDate}"></td>
+    </tr>
+    </tbody>
+</table>
