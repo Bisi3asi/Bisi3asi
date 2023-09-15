@@ -6,12 +6,18 @@
         </tr>
     </thead>
     <tbody>
-    <tr th:each="question : ${questionList}">
-        <!-- 타임리프는 Model 객체에 저장된 값을 읽을 수 있어 
-            questionList 사용이 가능함.-->
-        <!--th:each로 tr 내 question은 questionList를 for each loop-->
-        <td th:text="${question.subject}"></td>
-        <td th:text="${question.createDate}"></td>
-    </tr>
+        <tr th:each="question, index : ${questionList}">
+            <!-- 타임리프는 Model 객체에 저장된 값을 읽을 수 있어 
+                questionList 사용이 가능함.-->
+            <!--th:each로 tr 내 question은 questionList를 for each loop-->
+            <td>
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            </td>
+            <!--타임리프 링크 주소는 th:href 속성 사용-->
+            <!--타임리프 URL주소는 반드시 @{주소}로 입력-->
+            <!--타임리프는 문자열을 연결할 때 | 문자를 사용함-->
+                <!--ex ) "question/detail 같은 문자열과 ${question.id} 같은 객체는 ||로 좌우 감싸줘야함"-->
+            <td th:text="${question.createDate}"></td>
+        </tr>
     </tbody>
 </table>
