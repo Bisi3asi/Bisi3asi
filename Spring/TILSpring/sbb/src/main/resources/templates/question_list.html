@@ -1,23 +1,32 @@
-<table>
-    <thead>
-        <tr>
-            <th>제목</th>
-            <th>작성일시</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="question, index : ${questionList}">
-            <!-- 타임리프는 Model 객체에 저장된 값을 읽을 수 있어 
-                questionList 사용이 가능함.-->
-            <!--th:each로 tr 내 question은 questionList를 for each loop-->
-            <td>
-                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-            </td>
-            <!--타임리프 링크 주소는 th:href 속성 사용-->
-            <!--타임리프 URL주소는 반드시 @{주소}로 입력-->
-            <!--타임리프는 문자열을 연결할 때 | 문자를 사용함-->
-                <!--ex ) "question/detail 같은 문자열과 ${question.id} 같은 객체는 ||로 좌우 감싸줘야함"-->
-            <td th:text="${question.createDate}"></td>
-        </tr>
-    </tbody>
-</table>
+<html layout:decorate="~{layout}">
+<!-- 타임리프 layout:decorate :: 부모 템플릿으로 사용할 레이아웃 설정(layout.html)-->
+    <div layout:fragment="content">
+    <!-- 타임리프 layout:fragment :: 부모 템플릿의 layout:fragment를 자식 템플릿의 내용으로 교체-->
+        <table class = "table">
+            <thead class ="table-dark">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="question, loop : ${questionList}">
+                <!-- 타임리프는 Model 객체에 저장된 값을 읽을 수 있어 questionList 사용이 가능함.-->
+                <!--th:each로 tr 내 question은 questionList를 for each loop-->
+                    <td th:text="${loop.count}"></td>
+                    <td>
+                        <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                    </td>
+                        <!--타임리프 링크 주소는 th:href 속성 사용-->
+                        <!--타임리프 URL주소는 반드시 @{주소}로 입력-->
+                        <!--타임리프는 문자열을 연결할 때 | 문자를 사용함-->
+                            <!--ex ) "question/detail 같은 문자열과 ${question.id} 같은 객체는 ||로 좌우 감싸줘야함"-->
+                    <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                        <!-- temporals.format(날짜객체, 날짜포맷) 날짜포맷에 맞게 변환-->
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기></a>
+    </div>
+</html>

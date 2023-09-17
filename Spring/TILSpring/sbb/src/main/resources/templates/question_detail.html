@@ -1,25 +1,52 @@
+<!-- [부트 스트랩 클래스 속성 설명]-->
+<!-- my, py : 상하 마진, 패딩값 / d-flex justify-content-end : 컴포넌트 우측 정렬 -->
+<!-- bg-color : 배경 색깔(background), text-start : 좌측 정렬, btn-btn-primary : 부트스트랩 버튼 컴포넌트-->
 
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-<!-- resources > static > style.css 연결 -->
-<!-- static 디렉토리가 static 파일의 루트 디렉터리로 별도 경로 표시안함-->
+<html layout:decorate="~{layout}">
+<!-- 부모 템플릿 상속 -->
+    <div layout:fragment="content" class="container my-3">
+        <!-- 질문 -->
+        <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 답변의 갯수 표시 -->
+        <h5 class="border-bottom my-3 py-2" 
+            th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+                <!-- #lists.size : 이터러블 객체, 타임리프 제공 유틸리티로 객체 길이 반환 -->
+        <!-- 답변 반복 시작 -->
+        <div class="card my-3" th:each="answer : ${question.answerList}">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 답변 반복 끝  -->
+        <!-- 답변 작성 -->
+        <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
+            <!-- post method : 해당 form 버튼 클릭 시 해당 URL로 리디렉션-->
+            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            </div>
+            
+            <textarea th:field="*{content}" rows="10" class="form-control"></textarea>
+            <!-- th:field :: 해당 태그의 id, name, value 속성 자동 생성, 타임리프가 오류 생성 시에도
+            기존 입력한 값이 유지되게끔 함 -->
+            <input type="submit" value="답변등록" class="btn btn-primary my-2">
+        </form>
+    </div>
+</html>
 
-<h1 th:text ="${question.subject}"></h1>
-<tr>
-    <td>질문번호</td>
-    <td th:text ="${question.id}"></td>
-</tr>
-<div th:text = "${question.content}"></div>
-<h5 th:text = "|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
-    <!-- #lists.size : 이터러블 객체, 타임리프 제공 유틸리티로 객체 길이 반환 -->
-<div>
-    <ul>
-        <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
-    </ul>
-</div>
-<form th:action="@{|/answer/create/${question.id}|}" method="post">
-<!-- localhost:8080/answer/create/<질문id> 호출하는 action-->
-    <textarea name ="content" id="content" rows="15"></textarea>
-    <input type="submit" value="질문 답변하기">
-    <!-- 답변 등록 버튼 클릭 시 POST 방식으로 해당 url이 호출-->
-    <!-- 즉 새로고침의 개념으로 이해하면 될 듯-->
-</form>
+
+  
