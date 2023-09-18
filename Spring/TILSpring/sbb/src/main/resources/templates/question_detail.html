@@ -36,10 +36,9 @@
         <!-- 답변 작성 -->
         <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
             <!-- post method : 해당 form 버튼 클릭 시 해당 URL로 리디렉션-->
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-            </div>
-            
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <!-- 타임리프 th:replace :: div element를 form_errors.html에서
+                 th:fragment 속성명 formErrorsFragment인 놈으로 교체해라-->
             <textarea th:field="*{content}" rows="10" class="form-control"></textarea>
             <!-- th:field :: 해당 태그의 id, name, value 속성 자동 생성, 타임리프가 오류 생성 시에도
             기존 입력한 값이 유지되게끔 함 -->
