@@ -1,23 +1,25 @@
 import java.util.Scanner;
 
 class Main{
-    public int solution(String str, char t) {
-        int answer = 0;
-        t = Character.toLowerCase(t);
-        char[] arr = str.toLowerCase().toCharArray();
-        for(char c : arr){
-            if(c == t) answer++;
+    public String[] solution(int n, String[] word) {
+        StringBuilder sb = new StringBuilder();
+        String[] answer = new String[n];
+        for(int i = 0; i < n; i++){
+            sb.append(word[i]);
+            answer[i] = sb.reverse().toString();
+            sb.setLength(0);
         }
         return answer;
     }
     public static void main(String[] args) {
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        String str = sc.next();
-        // sc.next() string으로 가져온다
-        char c = sc.next().charAt(0);
-        // char 가져올 댸는 string에서 charAt(index)로 한자리수만 가져온다.
-        System.out.println(T.solution(str, c));
+        int n = sc.nextInt();
+        String[] arr = new String[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = sc.next();
+        for(String s : T.solution(n, arr))
+            System.out.println(s);
     }
 }
 
