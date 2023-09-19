@@ -1,25 +1,27 @@
 import java.util.Scanner;
-
 class Main{
-    public String[] solution(int n, String[] word) {
+    public String solution(String str) {
         StringBuilder sb = new StringBuilder();
-        String[] answer = new String[n];
-        for(int i = 0; i < n; i++){
-            sb.append(word[i]);
-            answer[i] = sb.reverse().toString();
-            sb.setLength(0);
+        for(int i = 0; i < str.length(); i++){
+            if(Character.isAlphabetic(str.charAt(i))) {
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            }
         }
-        return answer;
+        String temp = sb.toString();
+        return (temp.contentEquals(sb.reverse()) ? "YES" : "NO");
     }
     public static void main(String[] args) {
+        // 실행시간 측정
+        // long beforeTime = System.currentTimeMillis();
+        // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        String[] arr = new String[n];
-        for(int i = 0; i < n; i++)
-            arr[i] = sc.next();
-        for(String s : T.solution(n, arr))
-            System.out.println(s);
+        String str = sc.nextLine();
+        System.out.println((T.solution(str)));
+        // 측정 코드 끝
+        // long afterTime = System.currentTimeMillis();
+        // long diffTime = afterTime-beforeTime;
+        // System.out.println("실행시간(ms) " + diffTime);
     }
 }
 
