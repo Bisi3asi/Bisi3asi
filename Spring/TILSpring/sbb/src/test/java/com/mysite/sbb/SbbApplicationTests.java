@@ -16,6 +16,7 @@ import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
 
 //Junitg 기반의 스프링부트 테스트
 @SpringBootTest
@@ -26,6 +27,9 @@ class SbbApplicationTests {
 	// * DI : 스프링이 객체를 대신 생성해서 주입
 	// ★ 실 코드 작성시에는 Autowired은 순환참조 문제로 지양, 생성자로 생성
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	@Autowired
 	private AnswerRepository answerRepository;
@@ -136,5 +140,12 @@ class SbbApplicationTests {
 		// List<Answer> answerList = q.getAnswerList();
 		// assertEquals(1, answerList.size());
 		// assertEquals("동탄 신도시입니다.", answerList.get(0).getContent());
+
+	// 7) 대량 테스트 데이터 생산하기
+		for(int i= 1; i<=300; i++){
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "테스트 데이터 내용입니다";
+			this.questionService.create(subject, content);
+		}
 	}
 }

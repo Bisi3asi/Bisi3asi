@@ -1,19 +1,20 @@
 package com.mysite.sbb.question;
 import com.mysite.sbb.answer.AnswerForm;
-import java.util.List;
 
 import org.springframework.ui.Model;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Page;
 
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;;
+import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/question")
 // url의 프리픽스를 고정하는 애너테이션
@@ -27,11 +28,14 @@ public class QuestionController{
 
     // 질문 목록 매핑
     @GetMapping("/list")
-    public String list(Model model){
+    public String list(Model model, @RequestParam(value="page", defaultValue ="0") int page){
+        // get 방식으로 요청된 URL에서 page 값 가져오기 위해 RequestParam 추가
+        // 스트링 부트의 페이징은 첫페이지 번호가 0임
         // model 객체는 따로 생성할 필요 없이 컨트롤러 메서드의
         // 매개변수로만 지정하면 스프링부트가 자동으로 model 객체 생성
-        List<Question> questionList = this.questionService.getList();
-        model.addAttribute("questionList", questionList);       
+        Page<Question> paging = this.questionService.getList(page);
+        model.addAttribute("paging", paging);
+        // model을 통해 paging을 템플릿으로 전달 
         return "question_list";
         // resources > templates > question_list.html을 불러옴
     }

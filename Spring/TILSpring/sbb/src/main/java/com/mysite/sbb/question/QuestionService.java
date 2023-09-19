@@ -1,10 +1,15 @@
 package com.mysite.sbb.question;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.time.LocalDateTime;
 import com.mysite.sbb.DataNotFoundException;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -19,10 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
     
     private final QuestionRepository questionRepository;
-
-    public List<Question> getList(){
-        return this.questionRepository.findAll();
-    }
 
     public Question getQuestion(Integer id){
         Optional<Question> question = this.questionRepository.findById(id);
@@ -40,4 +41,20 @@ public class QuestionService {
         q.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q);
     }
+
+    // 질문 목록 조회
+    public Page<Question> getList(int page){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        // 작성일시 역순으로(최신 question이 위로 오게끔) 정렬
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        // page :: 조회할 페이지 번호, pageSize : 보여줄 개시물 갯수
+        // 세번재 파라미터로 Sort 객체 전달 시 해당 정렬에 맞춰 보여줌
+        return this.questionRepository.findAll(pageable);
+        // pageable :: 데이터 전체를 조회하지 않고 해당 페이지 데이터만 조회
+        // http://localhost:8080/question/list?page="number" 로 들어가면 페이지 조회
+    }
+
 }
+
+

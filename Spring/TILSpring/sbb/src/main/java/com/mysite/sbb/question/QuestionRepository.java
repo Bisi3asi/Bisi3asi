@@ -1,8 +1,11 @@
 package com.mysite.sbb.question;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+
 
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
     // ★ 메소드 내용을 구현하지 않아도 실행이 된다?!
@@ -17,4 +20,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer>{
     // subject와 content로 ID를 찾는 메소드
 
     List<Question> findBySubjectLike(String subject);
+    
+    Page<Question> findAll(Pageable pageable);
+    // 페이징 구현
 }
