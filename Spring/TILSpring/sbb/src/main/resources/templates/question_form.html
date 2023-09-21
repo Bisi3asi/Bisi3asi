@@ -6,7 +6,7 @@
     <!-- 오류 표시를 위해선 th.object를 questionForm 객체에서 받아와야 함 -->
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <!-- 타임리프 th:replace :: div element를 form_errors.html에서
-            th:fragment 속성명 formErrorsFragment인 놈으로 교체해라-->
+            th:fragment 속성명 formErrorsFragment인 놈으로 교체해라 -->
         <div class="mb-3">
             <label for="subject" class="form-label">제목</label>
             <input type="text" th:field="*{subject}" class="form-control">
