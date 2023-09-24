@@ -24,6 +24,7 @@ I enjoy watching movies and playing games.
 <img src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=IntelliJ&logoColor=000000"/>
 <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=FFFFFF"/>
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=FFFFFF"/>
+<img src="https://img.shields.io/badge/VSCode-02569B?style=flat-square&logo=Visual Studio&logoColor=FFFFFF"/>
 <br>
 <br>
 
