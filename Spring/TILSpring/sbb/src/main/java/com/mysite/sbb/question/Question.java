@@ -29,7 +29,8 @@ public class Question {
     // strategy : 고유번호 생성하는 옵션, 생략 시 모두 동일한 시퀸스로 번호 생성
     // GenerationTupe.IDENTITY : 해당 컬럼만의 독립적인 시퀸스 생성
 
-    private Integer id; // 고유 번호를 위해 private으로 id 설정
+    private Integer id;
+    
 
     @Column(length = 200)
     // length : column 길이 정의 시 사용
@@ -40,6 +41,7 @@ public class Question {
     // columnDefinition = "TEXT"는 내용처럼 글자 수 제한할 수 없는 경우
     private String content;
 
+    private LocalDateTime modifyDate;
     private LocalDateTime createDate;
     // 실제 테이블 컬럼명 : create_date
     // 대소문자 형태의 카멜 케이스 이름은 소문자로 변경되고 언더바로 구분

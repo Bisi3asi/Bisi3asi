@@ -24,6 +24,7 @@ public class Answer {
     private String content;
 
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
 
     @ManyToOne // N:1 관계, Answer에서 Many를 참조할 수 있다.
     private Question question;

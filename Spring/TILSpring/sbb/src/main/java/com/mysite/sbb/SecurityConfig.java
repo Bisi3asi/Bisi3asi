@@ -1,6 +1,7 @@
 package com.mysite.sbb;
 
-import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@EnableMethodSecurity(prePostEnabled = true)
+//PreAuthorize 애너테이션 동작 :: 로그아웃 상태에서 질문, 답변 등록 시 로그인 화면으로 이동
 @Configuration
 // 스프링의 환경설정 파일임을 의미하는 애너테이션
 @EnableWebSecurity

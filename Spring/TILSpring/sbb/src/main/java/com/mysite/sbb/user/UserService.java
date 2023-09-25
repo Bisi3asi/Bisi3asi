@@ -26,6 +26,7 @@ public class UserService{
         return user;
     }
 
+    // SiteUser 조회
     public SiteUser getUser(String username){
         Optional<SiteUser> siteUser = this.userRepository.findByusername(username);
         if (siteUser.isPresent()){
