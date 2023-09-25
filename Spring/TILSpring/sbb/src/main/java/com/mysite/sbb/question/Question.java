@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,4 +49,8 @@ public class Question {
     // mappedBy : 참조 엔티티의 속성명
     // CascadeType.REMOVE : 질문 삭제 시 그에 달린 답변도 모두 삭제
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
+    // 글 작성자 :: 작성자는 여러개의 질문을 작성할 수 있음(ManyToOne)
 }

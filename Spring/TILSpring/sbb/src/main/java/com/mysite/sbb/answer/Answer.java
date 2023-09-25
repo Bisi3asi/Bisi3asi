@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import com.mysite.sbb.question.*;
+import com.mysite.sbb.user.SiteUser;
 
 @Getter
 @Setter
@@ -27,4 +28,8 @@ public class Answer {
     @ManyToOne // N:1 관계, Answer에서 Many를 참조할 수 있다.
     private Question question;
     // 질문 엔티티와 연결된 속성임을 명시적으로 표시
+
+    @ManyToOne
+    private SiteUser author;
+    // 답변 작성자 :: 작성자는 여러개의 답변을 작성할 수 있음(ManyToOne)
 }

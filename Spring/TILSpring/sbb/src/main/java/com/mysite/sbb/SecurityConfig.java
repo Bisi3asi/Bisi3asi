@@ -1,7 +1,10 @@
 package com.mysite.sbb;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
@@ -33,8 +36,16 @@ public class SecurityConfig {
         .headers((headers) -> headers
             .addHeaderWriter(new XFrameOptionsHeaderWriter(
                 XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+        .formLogin((formLogin) -> formLogin
+        // formLogin :: 스프링 시큐리티 로그인 설정 담당 부분
+            .loginPage("/user/login")
+            .defaultSuccessUrl("/question/list"))
+        .logout((logout) -> logout
+        // 로그아웃 버튼 실행시 로그아웃 URL 설정, 사용자 세션 삭제 처리, 루트 페이지 이동
+            .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+            .logoutSuccessUrl("/")
+            .invalidateHttpSession(true))
         ;
-        
         return http.build();
     }
     
@@ -42,4 +53,11 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+    // 스프링 시큐리티의 인증을 담당한다 (사용자 인증 시 UserSecurityService, PasswordEncoder 사용)
+        throws Exception {
+            return authenticationConfiguration.getAuthenticationManager();
+        }
 }
