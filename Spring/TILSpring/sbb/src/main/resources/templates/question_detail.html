@@ -22,8 +22,14 @@
                         <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                     </div>
                 </div>
-                <!-- 수정하기, 삭제하기 -->
+                <!-- 추천하기, 수정하기, 삭제하기 -->
                 <div class="my-3">
+                    <!-- 클래스 속성에 recommend 추가해 data-uri 호출 -->
+                    <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+                        th:data-uri="@{|/question/vote/${question.id}|}">
+                        추천
+                        <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+                    </a>
                     <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
                         sec:authorize="isAuthenticated()"
                         th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
@@ -58,8 +64,13 @@
                         <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                     </div>
                 </div>
-                <!-- 답변 수정, 삭제 -->
+                <!-- 답변 추천, 수정, 삭제 -->
                 <div class="my-3">
+                    <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+                        th:data-uri="@{|/answer/vote/${answer.id}|}">
+                        추천
+                        <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
+                    </a>
                     <a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
                         sec:authorize="isAuthenticated()"
                         th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
@@ -88,8 +99,8 @@
             <input type="submit" value="답변등록" class="btn btn-primary my-2">
         </form>
     </div>
-    <!-- 질문 삭제 자바스크립트 -->
     <script layout:fragment="script" type='text/javascript'>
+        // 질문 삭제 자바스크립트 : className :
         const delete_elements = document.getElementsByClassName("delete");
         Array.from(delete_elements).forEach(function(element) {
             element.addEventListener('click', function() {
@@ -98,6 +109,15 @@
                 };
             });
         });
+        // 추천 자바스크립트 : className "recommend"
+        const recommend_elements = document.getElementsByClassName("recommend");
+        Array.from(recommend_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if(confirm("정말로 추천하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+        };
+    });
+});
     </script>
 </html>
 
