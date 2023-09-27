@@ -1,20 +1,26 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 class Main{
-    public int[] solution(int n, int[] arr) {
-        HashMap<Integer, Integer> rankMap = new HashMap<>();
-        ArrayList<Integer> sortList = new ArrayList<>();
-        for(int i = 0; i < n; i++) sortList.add(arr[i]);
-
-        int[] answer = new int[n];
-        sortList.sort(Collections.reverseOrder());
-        for (int i = 0; i < n; i++) {
-            if (i == 0) rankMap.put(sortList.get(i), 1);
-            else if (sortList.get(i-1).equals(sortList.get(i))) continue;
-            else rankMap.put(sortList.get(i), i+1);
+    public int solution(int n, int[][] arr) {
+        int answer = 0;
+        int[][] newArr = new int[n+1][n+1];
+        for(int i = 0; i < n+2; i++){
+            for(int j = 0; j < n+2; j++){
+                if(i == 0 || i == n || j == 0 || j == n){
+                    newArr[i][j] = 0;
+                }
+                else newArr[i][j] = arr[i-2][j-2];
+            }
         }
-        for (int i = 0; i < n; i++){
-            answer[i] = rankMap.get(arr[i]);
+        for(int i = 1; i < n+1; i++){
+            for(int j = 1; j < n+1; j++){
+                if(newArr[i][j] > newArr[i-1][j] && newArr[i][j] > newArr[i+1][j]
+                    && newArr[i][j] > newArr[i][j-1] && newArr[i][j] > newArr[i][j+1]){
+                    answer++;
+                    System.out.println(i+","+j);
+                }
+            }
         }
         return answer;
     }
@@ -25,9 +31,11 @@ class Main{
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        for(int i : T.solution(n, arr)) System.out.print(i + " ");
+        int[][] arr = new int[n][n];
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                arr[i][j] = sc.nextInt();
+        System.out.println(T.solution(n, arr));
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
