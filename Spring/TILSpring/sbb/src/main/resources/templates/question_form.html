@@ -15,13 +15,13 @@
             th:fragment 속성명 formErrorsFragment인 놈으로 교체해라 -->
         <div class="mb-3">
             <label for="subject" class="form-label">제목</label>
-            <input type="text" th:field="*{subject}" class="form-control">
+            <input type="text" th:field="*{subject}" class="form-control" placeholder="글 제목">
             <!-- th:field :: 해당 태그의 id, name, value 속성 자동 생성, 타임리프가 오류 생성 시에도
             기존 입력한 값이 유지되게끔 함 -->
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+            <textarea th:field="*{content}" class="form-control" rows="10" placeholder="글 내용 (본문은 마크다운을 지원합니다.)"></textarea>
             <!-- th:field :: 해당 태그의 id, name, value 속성 자동 생성, 타임리프가 오류 생성 시에도
             기존 입력한 값이 유지되게끔 함 -->
         </div>

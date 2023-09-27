@@ -16,13 +16,14 @@ public class AnswerService {
     
     private final AnswerRepository answerRepository;
 
-    public void create(Question question, String content, SiteUser author){
+    public Answer create(Question question, String content, SiteUser author){
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setQuestion(question);
         answer.setAuthor(author);
         this.answerRepository.save(answer);
+        return answer;
     }
 
     // 답변 id로 답변 조회
@@ -50,6 +51,12 @@ public class AnswerService {
     // 답변 추천
     public void vote(Answer answer, SiteUser siteUser){
         answer.getVoter().add(siteUser);
+        this.answerRepository.save(answer);
+    }
+
+    // 답변 비추천
+    public void unvote(Answer answer, SiteUser siteUser){
+        answer.getUnvoter().add(siteUser);
         this.answerRepository.save(answer);
     }
 }

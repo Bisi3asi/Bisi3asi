@@ -35,14 +35,18 @@ public class QuestionController{
 
     // 질문 목록 매핑
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(value="page", defaultValue ="0") int page){
+    public String list(Model model, @RequestParam(value="page", defaultValue ="0") int page,
+        @RequestParam(value ="kw", defaultValue ="") String kw){
         // get 방식으로 요청된 URL에서 page 값 가져오기 위해 RequestParam 추가
         // 스트링 부트의 페이징은 첫페이지 번호가 0임
         // model 객체는 따로 생성할 필요 없이 컨트롤러 메서드의
         // 매개변수로만 지정하면 스프링부트가 자동으로 model 객체 생성
-        Page<Question> paging = this.questionService.getList(page);
+        // kw : 검색어
+        Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
         // model을 통해 paging을 템플릿으로 전달 
+        model.addAttribute("kw", kw);
+        // 화면에서 입력한 검색어 화면 유지 위해 kw값 저장
         return "question_list";
         // resources > templates > question_list.html을 불러옴
     }
@@ -100,9 +104,9 @@ public class QuestionController{
         return "question_form";
     }
 
+    // 질문 수정 완료 후 클릭 시 POST 형식의 요청 처리
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
-    // 질문 수정 완료 후 클릭 시 POST 형식의 요청 처리
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, 
             Principal principal, @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
@@ -115,6 +119,7 @@ public class QuestionController{
         this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
         return String.format("redirect:/question/detail/%s", id);
     }
+
     // 질문 삭제
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
@@ -134,6 +139,16 @@ public class QuestionController{
         Question question = this.questionService.getQuestion(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.questionService.vote(question, siteUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
+    // 질문 비추천
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/unvote/{id}")
+    public String questionUnvote(Principal principal, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        this.questionService.unvote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
 }

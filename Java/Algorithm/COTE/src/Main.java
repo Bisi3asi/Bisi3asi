@@ -1,48 +1,23 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 class Main {
-    public int[] solution(int a, int[] aArr, int b, int[] bArr) {
-        int[] temp = new int[a];
-        int index = 0;
-        for (int i : aArr){
-            for (int j : bArr){
-                if (i == j) {
-                    temp[index] = i;
-                    index++;
-                    break;
-                }
+    public ArrayList<Integer> solution(int a, int[] aArr, int b, int[] bArr) {
+        int p1 = 0, p2 = 0;
+        ArrayList<Integer> answer = new ArrayList<>();
+        Arrays.sort(aArr);
+        Arrays.sort(bArr);
+        while(p1 < a && p2 < b){
+            if (aArr[p1] == bArr[p2]){
+                answer.add(aArr[p1]);
+                p1++;
             }
+            else if (aArr[p1] < bArr[p2]) p1++;
+            else p2++;
         }
-        int[] answer = new int[index+1];
-        for (int i = 0; i < index; i++)
-            answer[i] = temp[i];
-        Arrays.sort(answer);
         return answer;
     }
-
-//        Arrays.sort(aArr);
-//        Arrays.sort(bArr);
-//        ArrayList<Integer> list = new ArrayList<>();
-//
-//        int ib = 0; // index of b
-//        for (int i : aArr){
-//            if(ib < b) {
-//                for (int j = ib; j < b; j++) {
-//                    if (i == bArr[j]) {
-//                        list.add(bArr[j]);
-//                        ib = j + 1;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//        int[] answer = new int[list.size()];
-//        for (int i = 0; i < list.size(); i++)
-//            answer[i] = list.get(i);
-//
-//        return answer;
-//    }
 
     public static void main(String[] args) {
         // 실행  시간 측정
@@ -59,7 +34,7 @@ class Main {
         int[] bArr = new int[b];
         for (int i = 0; i < b; i++) bArr[i] = sc.nextInt();
 
-        for (int i : T.solution(a, aArr, b, bArr)) System.out.print(i + " ");
+        for (int i: T.solution(a, aArr, b, bArr)) System.out.print(i + " ");
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();

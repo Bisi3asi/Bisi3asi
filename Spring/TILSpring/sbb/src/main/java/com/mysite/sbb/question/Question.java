@@ -60,4 +60,7 @@ public class Question {
 
     @ManyToMany
     Set<SiteUser> voter;
+
+    @ManyToMany
+    Set<SiteUser> unvoter;
 }
