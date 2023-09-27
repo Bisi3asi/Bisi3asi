@@ -1,41 +1,65 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-class Main{
-    public int solution(int n, int[][] arr) {
-        int answer = 0;
-        int[][] newArr = new int[n+1][n+1];
-        for(int i = 0; i < n+2; i++){
-            for(int j = 0; j < n+2; j++){
-                if(i == 0 || i == n || j == 0 || j == n){
-                    newArr[i][j] = 0;
-                }
-                else newArr[i][j] = arr[i-2][j-2];
-            }
-        }
-        for(int i = 1; i < n+1; i++){
-            for(int j = 1; j < n+1; j++){
-                if(newArr[i][j] > newArr[i-1][j] && newArr[i][j] > newArr[i+1][j]
-                    && newArr[i][j] > newArr[i][j-1] && newArr[i][j] > newArr[i][j+1]){
-                    answer++;
-                    System.out.println(i+","+j);
+class Main {
+    public int[] solution(int a, int[] aArr, int b, int[] bArr) {
+        int[] temp = new int[a];
+        int index = 0;
+        for (int i : aArr){
+            for (int j : bArr){
+                if (i == j) {
+                    temp[index] = i;
+                    index++;
+                    break;
                 }
             }
         }
+        int[] answer = new int[index+1];
+        for (int i = 0; i < index; i++)
+            answer[i] = temp[i];
+        Arrays.sort(answer);
         return answer;
     }
+
+//        Arrays.sort(aArr);
+//        Arrays.sort(bArr);
+//        ArrayList<Integer> list = new ArrayList<>();
+//
+//        int ib = 0; // index of b
+//        for (int i : aArr){
+//            if(ib < b) {
+//                for (int j = ib; j < b; j++) {
+//                    if (i == bArr[j]) {
+//                        list.add(bArr[j]);
+//                        ib = j + 1;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        int[] answer = new int[list.size()];
+//        for (int i = 0; i < list.size(); i++)
+//            answer[i] = list.get(i);
+//
+//        return answer;
+//    }
+
     public static void main(String[] args) {
         // 실행  시간 측정
         // long beforeTime = System.currentTimeMillis();
         // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] arr = new int[n][n];
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < n; j++)
-                arr[i][j] = sc.nextInt();
-        System.out.println(T.solution(n, arr));
+
+        int a = sc.nextInt();
+        int[] aArr = new int[a];
+        for (int i = 0; i < a; i++) aArr[i] = sc.nextInt();
+
+        int b = sc.nextInt();
+        int[] bArr = new int[b];
+        for (int i = 0; i < b; i++) bArr[i] = sc.nextInt();
+
+        for (int i : T.solution(a, aArr, b, bArr)) System.out.print(i + " ");
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
