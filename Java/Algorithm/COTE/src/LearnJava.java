@@ -9,6 +9,7 @@ public class LearnJava {
     // out : hello \n helloo \n hellooo \n helloooo \n hellooooo
     IntStream stream2 = IntStream.iterate((0), val -> val + 3).limit(3);
     stream2.forEach(System.out::println);
+
     // out : 0 \n 3 \n 6
 
 // filter 메소드

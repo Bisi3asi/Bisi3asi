@@ -1,27 +1,18 @@
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.TreeSet;
 
 class Main {
-    public int solution(int n, int k, int[] arr) {
-        TreeSet<Integer> tset = new TreeSet<>(Collections.reverseOrder());
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                for (int l = j + 1; l < n; l++) {
-                    tset.add(arr[i] + arr[j] + arr[l]);
-                }
-            }
+    public int solution(int n, int k) {
+        int index = 0;
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= n; i++) list.add(i);
+
+        while(list.size() > 1){
+            index = (index + k - 1) % list.size();
+            list.remove(index);
         }
-        Iterator<Integer> iter = tset.iterator();
-        int answer = 0;
-        if (tset.size() < k) return -1;
-        else {
-            for (int i = 0; i < k; i++) {
-                answer = iter.next();
-            }
-            return answer;
-        }
+        return list.get(0);
     }
 
     public static void main(String[] args) {
@@ -31,11 +22,7 @@ class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int k = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(T.solution(n, k, arr));
+        System.out.println(T.solution(n, k));
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
