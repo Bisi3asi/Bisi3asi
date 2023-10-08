@@ -1,7 +1,6 @@
-
 import java.util.Scanner;
 
-class Main {
+class SelectionSort {
     public int[] solution(int n, int[] arr) { // 배열을 오름차순으로 정렬한다.
         for (int i = 0; i < n-1; i++){
             /* 1. 지정 : 요소의 위치를 지정할 인덱스를 지정 */
