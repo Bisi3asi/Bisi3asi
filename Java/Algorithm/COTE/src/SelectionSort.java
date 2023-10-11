@@ -24,7 +24,7 @@ class SelectionSort {
     public static void main(String[] args) {
         // 실행  시간 측정
         // 측정 코드 시작
-        Main T = new Main();
+        SelectionSort T = new SelectionSort();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
