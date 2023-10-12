@@ -1,24 +1,37 @@
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
-class Main {
-    public String solution(int n, int[] arr) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int i : arr) set.add(i);
-
-        if (set.size() != arr.length) return "D";
-        return "U";
+class Pof implements Comparable<Pof> {
+    int x;
+    int y;
+    Pof(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
+    @Override
+    public int compareTo(Pof p) {
+        if (this.x == p.x) return this.y - p.y;
+        else return this.x - p.x;
+    }
+}
+
+class Main {
     public static void main(String[] args) {
-        // 실행  시간 측정
+        // 실행 시간 측정
         // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        System.out.print(T.solution(n, arr));
+        ArrayList<Pof> list = new ArrayList<>();
+        for (int i=0; i<n; i++){
+            int x=sc.nextInt();
+            int y=sc.nextInt();
+            list.add(new Pof(x, y));
+        }
+        Collections.sort(list);
+        for (Pof p : list) System.out.println(p.x+ " "+p.y);
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
