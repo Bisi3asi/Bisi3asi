@@ -1,37 +1,39 @@
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
-class Pof implements Comparable<Pof> {
-    int x;
-    int y;
-    Pof(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public int compareTo(Pof p) {
-        if (this.x == p.x) return this.y - p.y;
-        else return this.x - p.x;
-    }
-}
-
 class Main {
+    public int solution(int n, int m, int[] arr) {
+        for (int i = 1; i < n; i++) {
+            int temp = arr[i], j;
+            for (j = i - 1; j >= 0; j--) {
+                if (arr[j] > temp) arr[j + 1] = arr[j];
+                else break;
+            }
+            arr[j + 1] = temp;
+        }
+        // binary search
+        int answer = 0, lt = 0, rt = n-1;
+        while(lt <= rt){
+            int mid = (lt + rt) / 2;
+            if (arr[mid] == m) {
+                answer = mid+1;
+                break;
+            }
+            else if (arr[mid] > m) rt = mid-1;
+            else lt = mid+1;
+        }
+        return answer;
+    }
+
     public static void main(String[] args) {
         // 실행 시간 측정
         // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        ArrayList<Pof> list = new ArrayList<>();
-        for (int i=0; i<n; i++){
-            int x=sc.nextInt();
-            int y=sc.nextInt();
-            list.add(new Pof(x, y));
-        }
-        Collections.sort(list);
-        for (Pof p : list) System.out.println(p.x+ " "+p.y);
+        int m = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+        System.out.println(T.solution(n, m, arr));
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
