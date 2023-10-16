@@ -1,37 +1,31 @@
-import java.util.*;
+import java.util.Scanner;
 
 class Main {
-    public int count(int[] arr, int capacity) {
-        int cnt = 1, sum = 0;
-        for (int i : arr) {
-            if (sum + i > capacity) {
-                cnt++;
-                sum = i;
-            } else sum += i;
-        }
-        return cnt;
-    }
-
     public int solution(int n, int m, int[] arr) {
-        int answer = 0;
-        int lt = Arrays.stream(arr).max().getAsInt();
-        int rt = Arrays.stream(arr).sum();
-
-        while (lt <= rt) {
-            int mid = (lt + rt) / 2;
-            if (count(arr, mid) <= m) {
-                answer = mid;
-                rt = mid - 1;
-            } else {
-                lt = mid + 1;
+        for (int i = 1; i < n; i++) {
+            int temp = arr[i], j;
+            for (j = i - 1; j >= 0; j--) {
+                if (arr[j] > temp) arr[j + 1] = arr[j];
+                else break;
             }
+            arr[j + 1] = temp;
+        }
+        // binary search
+        int answer = 0, lt = 0, rt = n-1;
+        while(lt <= rt){
+            int mid = (lt + rt) / 2;
+            if (arr[mid] == m) {
+                answer = mid+1;
+                break;
+            }
+            else if (arr[mid] > m) rt = mid-1;
+            else lt = mid+1;
         }
         return answer;
     }
 
-
     public static void main(String[] args) {
-        // 실행  시간 측정
+        // 실행 시간 측정
         // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
