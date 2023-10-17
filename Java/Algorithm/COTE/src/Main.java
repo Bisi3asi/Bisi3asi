@@ -1,32 +1,17 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 class Main {
-    public int decision(int mid, int[] arr) {
-        int target = arr[arr.length - 1], count = 0;
-        for (int i = arr.length - 2; i >= 0; i--) {
-            if (target - arr[i] >= mid) {
-                count++;
-                target = arr[i];
+    public int solution(int s, int e) {
+        int pos = s, answer = 0;
+        while (pos != e) {
+            if (pos < e) {
+                pos = (Math.abs(pos + 5 - e) < Math.abs(pos + 1 - e)) ? pos + 5 : pos + 1;
+                answer++;
             }
-        }
-        return count;
-    }
-
-    public int solution(int n, int c, int[] arr) {
-        int lt = Integer.MAX_VALUE, rt = 0, answer = 0;
-        Arrays.sort(arr);
-        for (int i = 0; i < n - 1; i++) {
-            if (Math.abs(arr[i] - arr[i + 1]) < lt) lt = Math.abs(arr[i] - arr[i + 1]);
-        }
-        rt = Arrays.stream(arr).max().getAsInt() - Arrays.stream(arr).min().getAsInt();
-        while (lt <= rt) {
-            int mid = (lt + rt) / 2;
-//            System.out.println("mid : " + mid + " lt : " + lt + " rt : " + rt);
-            if (decision(mid, arr) >= c - 1) {
-                answer = mid;
-                lt = mid + 1;
-            } else rt = mid - 1;
+            else {
+                pos --;
+                answer++;
+            }
         }
         return answer;
     }
@@ -36,11 +21,9 @@ class Main {
         // 측정 코드 시작
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int c = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        System.out.println(T.solution(n, c, arr));
+        int s = sc.nextInt();
+        int e = sc.nextInt();
+        System.out.println(T.solution(s, e));
         sc.close();
         // 측정 코드 끝
         // long afterTime = System.currentTimeMillis();
