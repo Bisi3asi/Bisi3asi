@@ -1,33 +1,29 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 class Main {
-    public int solution(int s, int e) {
-        int pos = s, answer = 0;
-        while (pos != e) {
-            if (pos < e) {
-                pos = (Math.abs(pos + 5 - e) < Math.abs(pos + 1 - e)) ? pos + 5 : pos + 1;
-                answer++;
-            }
-            else {
-                pos --;
-                answer++;
-            }
+    public int DFS(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            return n * DFS(n-1);
         }
-        return answer;
     }
 
-    public static void main(String[] args) {
-        // 실행 시간 측정
-        // 측정 코드 시작
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         Main T = new Main();
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        int e = sc.nextInt();
-        System.out.println(T.solution(s, e));
-        sc.close();
-        // 측정 코드 끝
-        // long afterTime = System.currentTimeMillis();
-        // long diffTime = afterTime-beforeTime;
-        // System.out.println("실행시간(ms) " + diffTime);
+        try {
+            int n = Integer.parseInt(br.readLine());
+            bw.write(String.valueOf(T.DFS(n)));
+        } catch (IOException e) {
+            throw new IOException(e);
+        }
+        bw.close();
+        br.close();
     }
 }
