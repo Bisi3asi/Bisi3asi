@@ -37,7 +37,7 @@ public class HelloController {
     @ResponseBody // 응답 바디부에 내가 이 내용을 직접 넣겠다 라는 뜻
     // 결과를 보면 html이나 view 없고, 해당 string이 그대로 내려옴
     public String helloString(@RequestParam("name") String name) {
-        return "hello" + name;
+        return "hello! " + name;
     }
 
     @GetMapping("hello-api") //localhost:8080/hello-api?name="String"

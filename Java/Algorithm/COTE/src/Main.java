@@ -1,32 +1,19 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 class Main {
-    static int[] arr;
-    public int DFS(int n) {
-        if (arr[n] > 0) return arr[n];
-        if (n == 1) return arr[n] = 1;
-        else if (n == 2) return arr[n] = 1;
-        else return arr[n] = DFS(n-2) + DFS(n-1);
+    public static String solution(String s) {
+        char[] arr = s.toCharArray();
+
+        for(int i = 0; i < arr.length; i++){
+            if(i == 0 && Character.isAlphabetic(arr[i])) arr[i] = Character.toUpperCase(arr[i]);
+            else if (arr[i-1] == ' ' && Character.isAlphabetic(arr[i]))
+                arr[i] = Character.toUpperCase(arr[i]);
+            else arr[i] = Character.toLowerCase(arr[i]);
+        }
+        return Arrays.toString(arr);
     }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        Main T = new Main();
-        try {
-            int n = Integer.parseInt(br.readLine());
-            arr = new int[n+1];
-            T.DFS(n);
-            for (int i = 1; i < n; i++)
-            bw.write(arr[i] +" ");
-        } catch (IOException e) {
-            throw new IOException(e);
-        }
-        bw.close();
-        br.close();
+    public static void main(String[] args) {
+        System.out.println(solution("3people unFollowed me"));
     }
 }
