@@ -40,19 +40,18 @@ public class AnnotationTest {
     }
 
     /**
-     * Target Annnotation test
-     * Target : 적용 가능 범위를 지정하는 어노테이션
+     * Target Annnotation test Target : 적용 가능 범위를 지정하는 어노테이션
      */
     static class testTargetAnnotation {
         int local;
 
-        void method() {}
+        void method() {
+        }
     }
 
     /**
-     * 1. Repeatable을 적용해 어노테이션 중복 적용 테스트
-     * 2. 컨테이너 어노테이션 : 묶고자 하는 어노테이션을 배열로 멤버로 만든다
-     * * 컨테이너 어노테이션의 메타 어노테이션 제한은 묶을 어노테이션과 동일해야 함
+     * 1. Repeatable을 적용해 어노테이션 중복 적용 테스트 2. 컨테이너 어노테이션 : 묶고자 하는 어노테이션을 배열로 멤버로 만든다 * 컨테이너 어노테이션의 메타 어노테이션 제한은 묶을 어노테이션과
+     * 동일해야 함
      */
     @Documented
     @Target({ElementType.METHOD})
@@ -62,8 +61,7 @@ public class AnnotationTest {
     }
 
     /**
-     * 1. Documented을 적용한 사용자 정의 어노테이션
-     * 2. Repeatable을 적용하기 위해 위에서 만든 컨테이너.class를 반복한다고 @Repeatable 명시한다.
+     * 1. Documented을 적용한 사용자 정의 어노테이션 2. Repeatable을 적용하기 위해 위에서 만든 컨테이너.class를 반복한다고 @Repeatable 명시한다.
      */
     @Documented
     @Target({ElementType.METHOD})
