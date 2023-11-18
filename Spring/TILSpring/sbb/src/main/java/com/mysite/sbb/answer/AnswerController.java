@@ -1,4 +1,5 @@
 package com.mysite.sbb.answer;
+
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionService;
 import com.mysite.sbb.user.SiteUser;
@@ -23,15 +24,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class AnswerController {
-    
+
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final UserService userService;
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Integer id, 
-    /* @RequestParam String content */ @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal){
+    public String createAnswer(Model model, @PathVariable("id") Integer id,
+            /* @RequestParam String content */ @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
         // requestParam String Content : 템플릿에서 답변으로 입력 내용(content)을 얻음
         // 템플릿의 답변 내용에 해당하는 textarea name 속성명이 content
         // principal.getName() :: 로그인한 사용자의 사용자 ID를 호출할 수 있음
@@ -39,15 +40,16 @@ public class AnswerController {
         SiteUser siteUser = this.userService.getUser(principal.getName());
         // principal 객체 -> 사용자명 얻은 후 -> SiteUser객체 얻어서 답변 등록
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("question", question);
             return "question_detail";
             // 요청에 실패한 경우 다시 question_detail 템플릿을 렌더링함
             // 이 때 question_detail 템플릿은 Question 객체가 필요하므로 model 객체에 Question 객체 저장
         }
         Answer answer = this.answerService.create(question, answerForm.getContent(), siteUser);
-        return String.format("redirect:/question/detail/%s#answer_%s", 
-            answer.getQuestion().getId(), answer.getId());
+        return String.format("redirect:/question/detail/%s#answer_%s",
+                answer.getQuestion().getId(), answer.getId());
+
     }
 
     // get 방식의 답변 수정 처리
@@ -66,7 +68,7 @@ public class AnswerController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-            @PathVariable("id") Integer id, Principal principal) {
+                               @PathVariable("id") Integer id, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "answer_form";
         }
@@ -75,7 +77,7 @@ public class AnswerController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         this.answerService.modify(answer, answerForm.getContent());
-        return String.format("redirect:/question/detail/%s#answer_%s", 
+        return String.format("redirect:/question/detail/%s#answer_%s",
                 answer.getQuestion().getId(), answer.getId());
     }
 
@@ -94,21 +96,22 @@ public class AnswerController {
     // 답변 추천
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
-    public String answerVote(Principal principal, @PathVariable("id") Integer id){
+    public String answerVote(Principal principal, @PathVariable("id") Integer id) {
         Answer answer = this.answerService.getAnswer(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.answerService.vote(answer, siteUser);
-        return String.format("redirect:/question/detail/%s#answer_%s", 
+        return String.format("redirect:/question/detail/%s#answer_%s",
                 answer.getQuestion().getId(), answer.getId());
     }
+
     //답변 비추천
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/unvote/{id}")
-    public String answerUnvote(Principal principal, @PathVariable("id") Integer id){
+    public String answerUnvote(Principal principal, @PathVariable("id") Integer id) {
         Answer answer = this.answerService.getAnswer(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.answerService.unvote(answer, siteUser);
-        return String.format("redirect:/question/detail/%s#answer_%s", 
+        return String.format("redirect:/question/detail/%s#answer_%s",
                 answer.getQuestion().getId(), answer.getId());
     }
 }
