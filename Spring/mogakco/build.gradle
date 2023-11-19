@@ -36,6 +36,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// assertJ
+	implementation 'org.assertj:assertj-core:3.21.0'
 }
 
 tasks.named('bootBuildImage') {
