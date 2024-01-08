@@ -4,13 +4,11 @@
 <a href="https://www.linkedin.com/in/sangje-lee-729742277/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=LinkedIn&logoColor=FFFFFF"/></a>
 <a href="https://mail.google.com/mail/u/0" target="_blank"><img src="https://img.shields.io/badge/kueeng8008@gmail.com-EA4335?style=flat-square&logo=Gmail&logoColor=FFFFFF"/></a>
 
-**<h2>💪 Welcome to Great Bisi3asi Github Challenge.</h2>**<p>
+**<h2><code>모든 것이 쉬워지기 전에는 어렵다.</code></h2>**<p>
 
-<h4>* I am studying Dev.<br>
-* AS Back-End Developer.<br>
-* Values Contribution about transaction and Fin-tech</h4>
+AS <code>Back-End Developer</code><br>
+Values Contribution about <code>Transaction</code> and <code>Fin-tech</code></h4>
 
-----
 <h3>Skills</h3><p>
 <img src="https://img.shields.io/badge/Java-ED8106?style=flat-square&logo=Java&logoColor=000000"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=000000"/>
