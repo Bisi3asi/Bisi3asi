@@ -5,8 +5,16 @@ function Header(props) {
   return (
     <header>
       <h1>
-        {/* props 는 객체, title은 프로퍼티, title의 값을 사용한다. */}
-        <a href="/">{props.title}</a>
+        {/* function(event) 는 (event) => 로 유사 람다 지원 */}
+        <a
+          href="/"
+          onClick={event => {
+            event.preventDefault(); // 클릭해도 이벤트가 일어나지 않게 설정
+            props.onChangeMode(); // props의 이벤트도 프로퍼티로 줘서 사용
+          }}
+        >
+          {props.title}
+        </a>
       </h1>
     </header>
   );
@@ -22,37 +30,50 @@ function Article(props) {
 }
 
 function Nav(props) {
-  const lis = []
+  const lis = [];
 
-  // react는 key라는 약속된 prop을 부여함으로써 데이터를 바인딩하는데 최적화함
-  for(let i=0; i<props.topics.length; i++){
+  for (let i = 0; i < props.topics.length; i++) {
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href={'/read/'+t.id}>{t.title}</a></li>)
+    lis.push(
+      <li key={t.id}>
+        <a id = {t.id} href={"/read/" + t.id} onClick={event => {
+          event.preventDefault();
+          props.onChangeMode(event.target.id); // event.target : 특정 이벤트를 유발시킨 태그
+        }}>{t.title}</a>
+      </li>
+    );
   }
 
   return (
     <nav>
-      <ol>
-        {lis}
-      </ol>
+      <ol>{lis}</ol>
     </nav>
   );
 }
 
 function App() {
   const topics = [
-    {id: 1, title:'html', body:'html is ...'},
-    {id: 2, title:'css', body:'css is ...'},
-    {id: 3, title:'javascript', body:'javascript is ...'},
-  ]
+    { id: 1, title: "html", body: "html is ..." },
+    { id: 2, title: "css", body: "css is ..." },
+    { id: 3, title: "javascript", body: "javascript is ..." },
+  ];
 
-  return ( 
+  return (
     <div>
       {/* props의 title이라는 프로퍼티를 정의한다. 함수 매개변수 처럼 이용 */}
-      <Header title="REACT"></Header>
+      <Header
+        title="REACT"
+        onChangeMode={() => {
+          alert("Header");
+        }}
+      ></Header>
       <Article title="WELCOME!" description="Web is Stronger than me"></Article>
-      {/* topics는 함수에서 정의해놓은 그대로를 전달 */}
-      <Nav topics={topics}></Nav>
+      <Nav
+        topics={topics}
+        onChangeMode={(id) => {
+          alert(id);
+        }}
+      ></Nav>
     </div>
   );
 }
