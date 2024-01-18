@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// index.js는 입구, index.js는 전역적인 설정이 들어간다.
+// id가 root인 태그로 렌더링 되고 있다.
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
