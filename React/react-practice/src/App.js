@@ -27,7 +27,51 @@ function Create(props) {
   );
 }
 
-// 매개변수로 props를 던져준다.
+function Update(props) {
+  const [title, setTitle] = useState(props.title);
+  const [body, setBody] = useState(props.body);
+
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        <p>
+          {/* react의 onChange 속성은 값이 바뀔때마다 실행된다. */}
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+          />
+        </p>
+        <p>
+          <textarea
+            name="body"
+            placeholder="body"
+            value={body}
+            onChange={(event) => {
+              setBody(event.target.value);
+            }}
+          ></textarea>
+        </p>
+        <p>
+          <input type="submit" value="update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+
 function Header(props) {
   return (
     <header>
@@ -35,9 +79,11 @@ function Header(props) {
         <a
           href="/"
           onClick={(event) => {
-            event.preventDefault(); // 클릭해도 이벤트가 일어나지 않게 설정
-            props.onChangeMode(); // props의 이벤트도 프로퍼티로 줘서 사용
-          }}>{props.title}
+            event.preventDefault();
+            props.onChangeMode();
+          }}
+        >
+          {props.title}
         </a>
       </h1>
     </header>
@@ -73,7 +119,6 @@ function Nav(props) {
       </li>
     );
   }
-
   return (
     <nav>
       <ol>{lis}</ol>
@@ -94,6 +139,7 @@ function App() {
   ]);
 
   let content = null;
+  let contextControl = null;
 
   if (mode === "WELCOME") {
     content = (
@@ -109,19 +155,61 @@ function App() {
       }
     }
     content = <Article title={title} description={body}></Article>;
+    contextControl = (
+      <>
+        <li>
+          <a
+            href={"/update/" + id}
+            onClick={(event) => {
+              event.preventDefault();
+              setMode("UPDATE");
+            }}
+          >
+            Update
+          </a>
+        </li>
+      </>
+    );
   } else if (mode === "CREATE") {
     content = (
       <Create
         onCreate={(_title, _body) => {
           const newTopic = { id: nextId, title: _title, body: _body };
-          const newTopics = [...topics] // 객체의 경우에는 ... 으로 복제본을 만든다
+          const newTopics = [...topics]; // 객체의 경우에는 ... 으로 복제본을 만든다
           newTopics.push(newTopic);
           setTopics(newTopics); // set할때 값이 다르면 다시 렌더링을 한다.
-          setMode('READ');
+          setMode("READ");
           setId(nextId);
-          setNextId(nextId+1);
+          setNextId(nextId + 1);
         }}
       ></Create>
+    );
+  } else if (mode === "UPDATE") {
+    let title,
+      body = null;
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = (
+      <Update
+        title={title}
+        body={body}
+        onUpdate={(title, body) => {
+          const newTopics = [...topics];
+          const updatedTopic = { id: id, title: title, body: body };
+          for (let i = 0; i < newTopics.length; i++) {
+            if (newTopics[i].id === id) {
+              newTopics[i] = updatedTopic;
+              break;
+            }
+          }
+          setTopics(newTopics);
+          setMode("READ");
+        }}
+      ></Update>
     );
   }
 
@@ -143,15 +231,17 @@ function App() {
       {content}
       <ul>
         <li>
-          <a href="/create" onClick={(event) => {
+          <a
+            href="/create"
+            onClick={(event) => {
               event.preventDefault();
               setMode("CREATE");
-            }}>Create
+            }}
+          >
+            Create
           </a>
         </li>
-        <li>
-          <a href="/update">Update</a>
-        </li>
+        {contextControl}
       </ul>
     </div>
   );
