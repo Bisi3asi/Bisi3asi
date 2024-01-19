@@ -168,6 +168,17 @@ function App() {
             Update
           </a>
         </li>
+        <li><input type="button" value="Delete" onClick={()=>{
+          const newTopics=[]
+          for(let i=0; i<topics.length; i++){
+            if (topics[i].id !== id){
+              // 일치하지 않는 값만 push함으로써 일치하는 값만 topics로 삭제
+              newTopics.push(topics[i]);
+            }
+          }
+          setTopics(newTopics);
+          setMode("WELCOME");
+      }} /></li>
       </>
     );
   } else if (mode === "CREATE") {
