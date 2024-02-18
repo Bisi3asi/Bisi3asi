@@ -10,20 +10,13 @@
 Values Contribution about <strong>Transaction</strong> and <strong>Fin-tech</strong></h4>
 
 <h4><code>Skills</code></h4><p>
-<img src="https://img.shields.io/badge/Java-ED8106?style=flat-square&logo=Java&logoColor=000000"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=000000"/>
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=FFFFFF"/>
-<img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=Flutter&logoColor=FFFFFF"/>  
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=FFFFFF"/>
-<p>
+  
+[![My Skills](https://skillicons.dev/icons?i=java,spring,html,css,javascript,react,mysql,hibernate,docker)](https://skillicons.dev)
+  
 <h4><code>Tools</code></h4><p>
-<img src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=IntelliJ&logoColor=000000"/>
-<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=FFFFFF"/>
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=FFFFFF"/>
-<img src="https://img.shields.io/badge/VSCode-02569B?style=flat-square&logo=Visual Studio&logoColor=FFFFFF"/>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=FFFFFF"/>
-<img src="https://img.shields.io/badge/Github Actions-2088FF?style=flat-square&logo=Github Actions&logoColor=FFFFFF"/>  
-<br>
+  
+[![My Skills](https://skillicons.dev/icons?i=idea,vscode,git,github,githubactions,gcp,tailwind,)](https://skillicons.dev)
+
 <br>
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Bisi3asi&show_icons=true&theme=radical)
