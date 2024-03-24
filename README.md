@@ -4,7 +4,7 @@
 <a href="https://www.linkedin.com/in/sangje-lee-729742277/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=LinkedIn&logoColor=FFFFFF"/></a>
 <a href="https://mail.google.com/mail/u/0" target="_blank"><img src="https://img.shields.io/badge/kueeng8008@gmail.com-EA4335?style=flat-square&logo=Gmail&logoColor=FFFFFF"/></a>
 
-**<h2>모든 것이 쉬워지기 전에는 어렵다. </h2>**<p>
+**<h2>모든 일이 쉬워지기 전에는 어렵다. </h2>**<p>
 
 <h4>AS <strong>Back-End Developer</strong><br>
 Values Contribution about <strong>DX</strong> and <strong>Team-Growth</strong></h4>
