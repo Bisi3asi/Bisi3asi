@@ -11,11 +11,11 @@ Values Contribution about <strong>DX</strong> and <strong>Team-Growth</strong></
 
 <h4><code>Skills</code></h4><p>
   
-[![My Skills](https://skillicons.dev/icons?i=java,spring,html,css,javascript,react,mysql,hibernate,docker)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,spring,html,css,javascript,react,mysql,hibernate,docker,githubactions,redis)](https://skillicons.dev)
   
 <h4><code>Tools</code></h4><p>
   
-[![My Skills](https://skillicons.dev/icons?i=idea,vscode,git,github,githubactions,gcp,tailwind,)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=idea,vscode,git,github,notion,gcp,tailwind,materialui)](https://skillicons.dev)
 
 <br> 
 
