@@ -6,7 +6,7 @@
 
 **<h2>모든 일이 쉬워지기 전에는 어렵다. </h2>**<p>
 
-<h4>AS <strong>Back-End Developer</strong><br>
+<h4><strong>AS Back-End Developer</strong><br>
 Values Contribution about <strong>DX</strong> and <strong>Team-Growth</strong></h4>
 
 <h4><code>Skills</code></h4><p>
