@@ -6,8 +6,15 @@
 </head>
 <body>
   <h1>JavaScript</h1>
-  <script>
-    document.write('hello world')
-  </script>
+  <!-- 클릭되었을 때 발생하는 onclick -->
+  <input type="button" value="hello" onclick="alert('hello!')">
+  <!-- input 내의 값이 변경되었을 때 발생하는 onchange -->
+  <input type="text" value="onchange" onchange="alert('changed!')">
+  <!-- 키를 눌렀을 때 발생하는 onkeydown -->
+  <input type="text" value="onkeydown" onkeydown="alert('key down!')"><!-- 키를 눌렀을 때 발생하는 onkeydown -->
+  <!-- 키를 뗐을 때 발생하는 onkeyup -->
+  <input type="text" value="onkeyup" onkeyup="alert('key up!')">
+  <!-- 키를 눌렀을 때 발생하는 onkeypress (현재 눌린 문자 키에 반응) -->
+  <input type="text" value="onkeypress" onkeypress="alert('key press!')">
 </body>
 </html>
