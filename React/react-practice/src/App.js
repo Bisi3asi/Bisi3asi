@@ -146,8 +146,7 @@ function App() {
       <Article title="WELCOME!" description="Web is Stronger than me"></Article>
     );
   } else if (mode === "READ") {
-    let title,
-      body = null;
+    let title, body = null;
     for (let i = 0; i < topics.length; i++) {
       if (topics[i].id === id) {
         title = topics[i].title;
