@@ -15,15 +15,15 @@ document.querySelector('body').style.backgroundColor ='white';
 document.querySelector('body').style.color = 'black'
 ">
 <input id="night_day" type="button" value="night" onclick="
-if(document.querySelector('#night_day').value === 'night'){
+if(this.value === 'night'){
     document.querySelector('body').style.backgroundColor ='black';
     document.querySelector('body').style.color = 'white';
-    document.querySelector('#night_day').value = 'day';
+    this.value = 'day';
 }
 else{
     document.querySelector('body').style.backgroundColor ='white';
     document.querySelector('body').style.color = 'black'
-    document.querySelector('#night_day').value = 'night';
+    this.value = 'night';
 }
 ">
 <h2>JavaScript</h2>
