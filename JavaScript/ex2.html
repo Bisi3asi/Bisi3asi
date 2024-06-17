@@ -15,17 +15,18 @@ document.querySelector('body').style.backgroundColor ='white';
 document.querySelector('body').style.color = 'black'
 ">
 <input id="night_day" type="button" value="night" onclick="
-if(this.value === 'night'){
-    document.querySelector('body').style.backgroundColor ='black';
-    document.querySelector('body').style.color = 'white';
-    this.value = 'day';
-}
-else{
-    document.querySelector('body').style.backgroundColor ='white';
-    document.querySelector('body').style.color = 'black'
-    this.value = 'night';
-}
-">
+    var target = document.querySelector('body');
+    if(this.value === 'night'){
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        this.value = 'day';
+    }
+    else{
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black'
+        this.value = 'night';
+    }
+    ">
 <h2>JavaScript</h2>
 <p>JavaScript is a powerful Web Language</p>
 </body>
