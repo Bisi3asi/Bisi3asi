@@ -9,13 +9,13 @@
 <h4><strong>AS Back-End Developer</strong><br>
 Values Contribution about <strong>DX</strong> and <strong>Team-Growth</strong></h4>
 
-<h4><code>Skills</code></h4><p>
+<h4><code>Skilled</code></h4><p>
   
-[![My Skills](https://skillicons.dev/icons?i=java,spring,html,css,javascript,react,mysql,hibernate,docker,nginx,githubactions,redis)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,spring,cpp,mysql,linux)](https://skillicons.dev)
   
-<h4><code>Tools</code></h4><p>
+<h4><code>Experienced</code></h4><p>
   
-[![My Skills](https://skillicons.dev/icons?i=idea,vscode,git,github,notion,gcp,tailwind,materialui)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=cmake,react,redis,gradle,maven,hibernate,docker)](https://skillicons.dev)
 
 <br> 
 
