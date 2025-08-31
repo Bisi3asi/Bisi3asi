@@ -5,7 +5,7 @@
 
 <br>
 
-> **Holding yesterday’s quiet, Walking toward tomorrow.**
+> **Holding Yesterday’s Quiet, Walking Toward Tomorrow.**
 
 <br>
 
