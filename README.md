@@ -1,21 +1,29 @@
 <a href="" target="_blank"><img src="https://img.shields.io/badge/Nation : KR-000000?style=flat-square&logoColor=FFFFFF"/></a>
-<a href="https://doinitright.simple.ink/" target="_blank"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=FFFFFF"/></a>
 <a href="https://doinitright.tistory.com" target="_blank"><img src="https://img.shields.io/badge/Blog-FF4785?style=flat-square&logo=tistory&logoColor=FFFFFF"/></a>
 <a href="https://www.linkedin.com/in/sangje-lee-729742277/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=LinkedIn&logoColor=FFFFFF"/></a>
 <a href="https://mail.google.com/mail/u/0" target="_blank"><img src="https://img.shields.io/badge/kueeng8008@gmail.com-EA4335?style=flat-square&logo=Gmail&logoColor=FFFFFF"/></a>
 
-**<h2>모든 일이 쉬워지기 전에는 어렵다. </h2>**<p>
+<br>
 
-<h4><strong>AS Back-End Developer</strong><br>
-Values Contribution about <strong>DX</strong> and <strong>Team-Growth</strong></h4>
+> **Holding Yesterday’s Quiet, Walking Toward Tomorrow.**
 
-<h4><code>Skills</code></h4><p>
+<br>
+
+`About Me`
+<h4><strong>👦 WORKING AS System Engineer (Ar. Financial Risk Management) </strong><br>
+<h4>😁 Interested in Financial sector 
+<h4>✅ Values Contribution to Ditial Transforamtion(DX) and Team-Growth</h4>
+<h4>✅ Persue Stability & Efficency by Organizing Application Logic With Given Resource</h4>
+
+<br>
+
+`Skilled`
   
-[![My Skills](https://skillicons.dev/icons?i=java,spring,html,css,javascript,react,mysql,hibernate,docker,nginx,githubactions,redis)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,javascript,spring,cpp,cmake,mysql,linux)](https://skillicons.dev)
   
-<h4><code>Tools</code></h4><p>
+`Experienced`
   
-[![My Skills](https://skillicons.dev/icons?i=idea,vscode,git,github,notion,gcp,tailwind,materialui)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,redis,gradle,maven,hibernate,docker,githubactions)](https://skillicons.dev)
 
 <br> 
 
